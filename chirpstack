@@ -1,0 +1,21 @@
+#!/bin/sh /etc/rc.common
+START=100
+STOP=10
+
+start() {
+    echo "$(date): Waiting for Docker to fully start..." >> /var/log/chirpstack.log
+    sleep 15  
+    while ! docker info > /dev/null 2>&1; do     
+        echo "$(date): Waiting for Docker daemon to be ready..." >> /var/log/chirpstack.log
+        sleep 5                      
+    done                             
+    echo "$(date): Starting ChirpStack Docker Compose" >> /var/log/chirpstack.log
+    cd /root/chirpstack-docker
+    /usr/bin/docker-compose up -d >> /var/log/chirpstack.log 2>&1
+}                                            
+                                
+stop() {                        
+    echo "$(date): Stopping ChirpStack Docker Compose" >> /var/log/chirpstack.log
+    cd /root/chirpstack-docker
+    /usr/bin/docker-compose down >> /var/log/chirpstack.log 2>&1
+}
