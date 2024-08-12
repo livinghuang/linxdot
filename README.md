@@ -60,11 +60,10 @@ Clone the Linxdot configuration repository and move the necessary files:
 
 ```bash
 git clone https://github.com/livinghuang/linxdot.git
-
+mv ~/linxdot/chirpstack /etc/init.d/
 mv ~/linxdot/docker-compose.yml ~/chirpstack-docker/
 mv ~/linxdot/global_conf.json.sx1250 /etc/lora/
 mv ~/linxdot/lrpkfw /etc/init.d/
-mv ~/linxdot/chirpstack /etc/init.d/
 ```
 
 ### Step 6: Manage ChirpStack and Lrpkfw Services
